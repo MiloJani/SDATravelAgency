@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -12,19 +13,29 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "CLIENT")
 public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "CLIENT_ID")
     private Long clientId;
 
-    @Column(nullable = false)
+    @Column(name = "CLIENT_NAME",nullable = false)
     private String clientName;
 
-    @Column(nullable = false)
+    @Column(name = "PHONE_NUMBER",nullable = false)
     private String phoneNumber;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "CLIENT_ID")
     private List<Reviews> reviews;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "CLIENT_TOURS",
+            joinColumns = @JoinColumn(name = "CLIENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TOUR_ID")
+    )
+    private Set<Tour> tours;
 }

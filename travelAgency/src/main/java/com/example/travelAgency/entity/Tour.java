@@ -18,8 +18,8 @@ import java.util.List;
 public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", updatable = false, nullable = false)
-    private Long id;
+    @Column(name="TOUR_ID", updatable = false, nullable = false)
+    private Long tourId;
 
     @Column(name="TOUR_NAME",nullable = false)
     private String tourName;
