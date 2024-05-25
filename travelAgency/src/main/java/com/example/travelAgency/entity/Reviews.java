@@ -16,14 +16,5 @@ public class Reviews {
     private int reviewId;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "tour_id")
-    private Tour tour;
-
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
-
-
 }
 

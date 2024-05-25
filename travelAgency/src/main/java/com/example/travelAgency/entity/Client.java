@@ -3,6 +3,8 @@ package com.example.travelAgency.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -21,4 +23,8 @@ public class Client {
 
     @Column(nullable = false)
     private String phoneNumber;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    private List<Reviews> reviews;
 }

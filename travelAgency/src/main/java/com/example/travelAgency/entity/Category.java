@@ -10,15 +10,15 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Category")
+@Table(name = "CATEGORY")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id", nullable = false)
-
+    @Column(name = "ID", nullable = false)
     private Long categoryId;
-    @Column(name = "Category Name ", nullable = false)
+
+    @Column(nullable = false)
     private String categoryName;
 
 

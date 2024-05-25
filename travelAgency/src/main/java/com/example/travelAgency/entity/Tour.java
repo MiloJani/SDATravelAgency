@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 //hi
 
 @Entity
@@ -13,25 +14,40 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Tour")
+@Table(name = "TOUR")
 public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", updatable = false, nullable = false)
     private Long id;
-    @Column(name="Tour Name",nullable = false)
+
+    @Column(name="TOUR_NAME",nullable = false)
     private String tourName;
-    @ManyToOne
-    @JoinColumn(name = "category_Id")
-    private Category categoryId;
-    @Column(name="Start Date", nullable = false)
+
+    @Column(name="START_DATE", nullable = false)
     private LocalDate startDate;
-    @Column(name="End Date", nullable = false)
+
+    @Column(name="END_DATE", nullable = false)
     private LocalDate endDate;
-    @Column(name="Price",nullable = false)
+
+    @Column(name="PRICE",nullable = false)
     private Double price;
+
+    @Column(name = "STARTING_CITY")
     private String startingCity;
-    private String endingCity;
+
+    @Column(name = "DESTINATION_CITY")
+    private String destinationCity;
+
+    @ManyToOne
+    @JoinColumn(name = "CATEGORY_ID")
+    private Category category;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "TOUR_ID")
+    private List<Reviews> reviews;
+
+
 
 
 }
