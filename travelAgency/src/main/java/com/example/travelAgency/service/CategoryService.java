@@ -1,18 +1,19 @@
 package com.example.travelAgency.service;
 
 import com.example.travelAgency.dto.categoryDTOs.CategoryDTO;
+import com.example.travelAgency.dto.categoryDTOs.ResponseCategoryDTO;
 import com.example.travelAgency.entity.Category;
 
 import java.util.List;
 
 public interface CategoryService {
-    List<Category> getAllCategories();
+    List<ResponseCategoryDTO> getAllCategories();
 
-    CategoryDTO getCategoryById(Long id) ;
+    ResponseCategoryDTO getCategoryById(Long id) ;
 
-    CategoryDTO addCategory(Category category) ;
+    ResponseCategoryDTO addCategory(CategoryDTO categoryDTO) ;
 
-    CategoryDTO updateCategory(Category category, Long id) ;
+    ResponseCategoryDTO updateCategory(CategoryDTO categoryDTO, Long id) ;
 
-    Long deleteCategory(Long id) ;
+    void deleteCategory(Long id) ;
 }

@@ -27,9 +27,9 @@ public class Client {
     @Column(name = "PHONE_NUMBER",nullable = false)
     private String phoneNumber;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "CLIENT_ID")
-    private List<Reviews> reviews;
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "CLIENT_ID")
+//    private List<Reviews> reviews;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(

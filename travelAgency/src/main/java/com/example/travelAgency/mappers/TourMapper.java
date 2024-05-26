@@ -1,20 +1,22 @@
 package com.example.travelAgency.mappers;
 
+import com.example.travelAgency.dto.reviewDTOs.ResponseReviewDTO;
 import com.example.travelAgency.dto.tourDTOs.RequestTourDTO;
 import com.example.travelAgency.dto.tourDTOs.ResponseTourDTO;
 import com.example.travelAgency.entity.Reviews;
 import com.example.travelAgency.entity.Tour;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
+@AllArgsConstructor
 @Component
 public class TourMapper {
-        private ReviewsMapper reviewsMapper;
+    private ReviewsMapper reviewsMapper;
     public ResponseTourDTO mapToTourDTO(Tour tour) {
-
-            List<Reviews> reviews = tour.getReviews();
 
             ResponseTourDTO responseTourDTO=new ResponseTourDTO();
             responseTourDTO.setTourId(tour.getTourId());
@@ -24,10 +26,19 @@ public class TourMapper {
             responseTourDTO.setEndDate(tour.getEndDate());
             responseTourDTO.setStartingCity(tour.getStartingCity());
             responseTourDTO.setDestinationCity(tour.getDestinationCity());
+
+            Set<Reviews> reviews = tour.getReviews();
+            if (reviews!=null){
+                    Set<ResponseReviewDTO> responseReviewDTOS = new HashSet<>();
+                    for (Reviews review:reviews){
+                            responseReviewDTOS.add(reviewsMapper.mapToReviewsDTO(review));
+                    }
+                    responseTourDTO.setResponseReviewDTOS(responseReviewDTOS);
+            }else responseTourDTO.setResponseReviewDTOS(Collections.emptySet());
+
+//  responseTourDTO.setResponseReviewDto(tour.getReviews().stream().map(review -> reviewMapper.mapToReviewsDTO(review)).collect(Collectors.toSet()));
             responseTourDTO.setCategoryId(tour.getCategory().getCategoryId());
-            responseTourDTO.setResponseReviewDTOS(reviews
-                    .stream().map(r -> reviewsMapper.mapToReviewsDTO(r) )
-                    .collect(Collectors.toList()));
+
             return responseTourDTO;
 //        return ResponseTourDTO.builder()
 //                .tourId(tour.getTourId())
@@ -42,7 +53,6 @@ public class TourMapper {
 
     public Tour mapToTourEntity(RequestTourDTO requestTourDTO){
             Tour tour=new Tour();
-            tour.setTourId(requestTourDTO.getTourId());
             tour.setTourName(requestTourDTO.getTourName());
             tour.setPrice(requestTourDTO.getPrice());
             tour.setStartDate(requestTourDTO.getStartDate());

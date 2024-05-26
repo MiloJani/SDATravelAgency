@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 //hi
 
 @Entity
@@ -45,7 +46,7 @@ public class Tour {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "TOUR_ID")
-    private List<Reviews> reviews;
+    private Set<Reviews> reviews;
 
 
 

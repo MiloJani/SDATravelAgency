@@ -10,6 +10,6 @@ import lombok.*;
 @NoArgsConstructor
 public class RequestReviewDTO {
 
-    private Long reviewId;
     private String description;
+    private String email;
 }

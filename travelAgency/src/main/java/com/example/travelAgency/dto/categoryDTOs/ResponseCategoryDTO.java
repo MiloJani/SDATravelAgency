@@ -8,8 +8,9 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDTO {
+public class ResponseCategoryDTO {
 
+    private Long categoryId;
     private String categoryName;
 }
 

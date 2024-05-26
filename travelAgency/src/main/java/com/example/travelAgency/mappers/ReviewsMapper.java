@@ -10,18 +10,21 @@ public class ReviewsMapper {
 
     public Reviews mapToReviewsEntity(RequestReviewDTO requestReviewDTO){
 
-        Reviews reviews = new Reviews();
-        reviews.setReviewId(requestReviewDTO.getReviewId());
-        reviews.setDescription(reviews.getDescription());
-        return reviews;
+        Reviews review = new Reviews();
+        review.setEmail(requestReviewDTO.getEmail());
+        review.setDescription(requestReviewDTO.getDescription());
+        return review;
     }
 
     public ResponseReviewDTO mapToReviewsDTO(Reviews reviews){
 
-        ResponseReviewDTO responseReviewDTO = new ResponseReviewDTO();
-        responseReviewDTO.setReviewId(reviews.getReviewId());
-        responseReviewDTO.setDescription(responseReviewDTO.getDescription());
-        return responseReviewDTO;
+        ResponseReviewDTO responseReviewDto = new ResponseReviewDTO();
+        responseReviewDto.setDescription(reviews.getDescription());
+        responseReviewDto.setReviewId(reviews.getReviewId());
+        responseReviewDto.setEmail(reviews.getEmail());
+        responseReviewDto.setTourId(reviews.getTour().getTourId());
+
+        return responseReviewDto;
     }
 
 

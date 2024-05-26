@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class RequestTourDTO {
 
-    private Long tourId;
     private String tourName;
     private LocalDate startDate;
     private LocalDate endDate;

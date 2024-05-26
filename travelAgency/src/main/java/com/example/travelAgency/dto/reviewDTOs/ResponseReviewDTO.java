@@ -12,5 +12,6 @@ public class ResponseReviewDTO {
 
     private Long reviewId;
     private String description;
+    private String email;
     private Long tourId;
 }

@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,5 +23,5 @@ public class ResponseTourDTO {
     private String startingCity;
     private String destinationCity;
     private Long categoryId;
-    private List<ResponseReviewDTO> responseReviewDTOS;
+    private Set<ResponseReviewDTO> responseReviewDTOS;
 }

@@ -1,12 +1,14 @@
 package com.example.travelAgency.service.impl;
 
 import com.example.travelAgency.dto.categoryDTOs.CategoryDTO;
+import com.example.travelAgency.dto.categoryDTOs.ResponseCategoryDTO;
 import com.example.travelAgency.entity.Category;
 import com.example.travelAgency.mappers.CategoryMapper;
 import com.example.travelAgency.repository.CategoryRepository;
 import com.example.travelAgency.service.CategoryService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,50 +23,47 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryMapper = categoryMapper;
     }
 
+
     @Override
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+    public List<ResponseCategoryDTO> getAllCategories() {
+        List<Category> categories = categoryRepository.findAll();
+        List<ResponseCategoryDTO> responseCategoryDTOS = new ArrayList<>();
+        for (Category category:categories){
+            responseCategoryDTOS.add(categoryMapper.mapToCategoryDTO(category));
+        }
+        return responseCategoryDTOS;
     }
 
     @Override
-    public CategoryDTO getCategoryById(Long id) {
-        Optional<Category> categoryOptional = categoryRepository.findById(id);
-        if (categoryOptional.isPresent()) {
-            Category category = categoryOptional.get();
-            return categoryMapper.mapToCategoryDTO(category);
-        }
-        return null;
+    public ResponseCategoryDTO getCategoryById(Long id) {
+        Category foundCategory = categoryRepository.findById(id).orElseThrow(
+                ()->new RuntimeException("Category with id:"+id+"  not found")
+        );
+        return categoryMapper.mapToCategoryDTO(foundCategory);
     }
 
     @Override
-    public CategoryDTO addCategory(Category category){
-        if (!categoryRepository.existsById(category.getCategoryId())) {
-            categoryRepository.save(category);
-            return categoryMapper.mapToCategoryDTO(category);
-        }
-        return null;
+    public ResponseCategoryDTO addCategory(CategoryDTO categoryDTO) {
+        Category category = categoryMapper.mapToCategoryEntity(categoryDTO);
+        Category savedCategory = categoryRepository.save(category);
+        return categoryMapper.mapToCategoryDTO(savedCategory);
     }
 
     @Override
-    public CategoryDTO updateCategory(Category category, Long id){
-        Optional<Category> categoryOptional = categoryRepository.findById(id);
-        if (categoryOptional.isPresent()) {
-            Category existingCategory = categoryOptional.get();
-            existingCategory.setCategoryName(category.getCategoryName());
-            categoryRepository.save(existingCategory);
-            return categoryMapper.mapToCategoryDTO(existingCategory);
-        }
-        return null;
+    public ResponseCategoryDTO updateCategory(CategoryDTO categoryDTO, Long id) {
+        Category foundCategory = categoryRepository.findById(id).orElseThrow(
+                ()->new RuntimeException("Category with id:"+id+"  not found")
+        );
+        foundCategory.setCategoryName(categoryDTO.getCategoryName());
+        Category updatedCategory = categoryRepository.save(foundCategory);
+        return categoryMapper.mapToCategoryDTO(updatedCategory);
     }
 
     @Override
-    public Long deleteCategory(Long id){
-        Optional<Category> categoryOptional = categoryRepository.findById(id);
-        if (categoryOptional.isPresent()) {
-            Category existingCategory = categoryOptional.get();
-            categoryRepository.delete(existingCategory);
-            return id;
-        }
-        return null;
+    public void deleteCategory(Long id) {
+        Category foundCategory = categoryRepository.findById(id).orElseThrow(
+                ()->new RuntimeException("Category with id:"+id+"  not found")
+        );
+        categoryRepository.delete(foundCategory);
     }
 }
