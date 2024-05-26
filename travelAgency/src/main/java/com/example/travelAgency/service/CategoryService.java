@@ -1,6 +1,6 @@
 package com.example.travelAgency.service;
 
-import com.example.travelAgency.dto.CategoryDTO;
+import com.example.travelAgency.dto.categoryDTOs.CategoryDTO;
 import com.example.travelAgency.entity.Category;
 
 import java.util.List;

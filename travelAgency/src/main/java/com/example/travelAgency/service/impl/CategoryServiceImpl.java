@@ -1,6 +1,6 @@
 package com.example.travelAgency.service.impl;
 
-import com.example.travelAgency.dto.CategoryDTO;
+import com.example.travelAgency.dto.categoryDTOs.CategoryDTO;
 import com.example.travelAgency.entity.Category;
 import com.example.travelAgency.mappers.CategoryMapper;
 import com.example.travelAgency.repository.CategoryRepository;

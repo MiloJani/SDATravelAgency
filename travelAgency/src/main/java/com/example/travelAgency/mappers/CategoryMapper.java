@@ -1,6 +1,6 @@
 package com.example.travelAgency.mappers;
 
-import com.example.travelAgency.dto.CategoryDTO;
+import com.example.travelAgency.dto.categoryDTOs.CategoryDTO;
 import com.example.travelAgency.entity.Category;
 import org.springframework.stereotype.Component;
 

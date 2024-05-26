@@ -1,4 +1,4 @@
-package com.example.travelAgency.dto;
+package com.example.travelAgency.dto.categoryDTOs;
 
 import lombok.*;
 

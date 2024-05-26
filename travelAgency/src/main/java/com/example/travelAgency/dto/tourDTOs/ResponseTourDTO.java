@@ -1,0 +1,19 @@
+package com.example.travelAgency.dto.tourDTOs;
+
+import com.example.travelAgency.dto.reviewDTOs.ResponseReviewDTO;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class ResponseTourDTO {
+
+    private Long tourId;
+    private String tourName;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private Double price;
+    private String startingCity;
+    private String destinationCity;
+    private Long categoryId;
+    private List<ResponseReviewDTO> responseReviewDTOS;
+}
