@@ -1,10 +1,17 @@
 package com.example.travelAgency.dto.tourDTOs;
 
 import com.example.travelAgency.dto.reviewDTOs.ResponseReviewDTO;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
+@Setter
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ResponseTourDTO {
 
     private Long tourId;
