@@ -14,10 +14,10 @@ public interface TourRepository extends JpaRepository<Tour,Long> {
     List<Tour> findByTourName(String tourName);
 
     List<Tour> findByPrice(Double price);
-    List<Tour> findByCities(String startingCity,String destinationCity);
+    List<Tour> findByStartingCityAndDestinationCity(String startingCity,String destinationCity);
 
     @Query("SELECT t FROM Tour t LEFT JOIN t.category c WHERE c.categoryName LIKE %?1%")
     List<Tour> findByCategoryName(String category);
 
-    List<Tour> findByDateBetween(LocalDate startDate, LocalDate endDate);
+    List<Tour> findByStartDateBetween(LocalDate startDate, LocalDate endDate);
 }

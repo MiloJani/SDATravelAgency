@@ -94,9 +94,9 @@ public class TourServiceImpl implements TourService {
         List<Tour> tours = new ArrayList<>();
         tours.addAll(tourRepository.findByTourName(tourName));
         tours.addAll(tourRepository.findByPrice(price));
-        tours.addAll(tourRepository.findByCities(startingCity, destinationCity));
+        tours.addAll(tourRepository.findByStartingCityAndDestinationCity(startingCity, destinationCity));
         tours.addAll(tourRepository.findByCategoryName(category));
-        tours.addAll(tourRepository.findByDateBetween(startDate, endDate));
+        tours.addAll(tourRepository.findByStartDateBetween(startDate, endDate));
         Set<Tour> uniqueTours = new HashSet<>(tours);
         return uniqueTours.stream().map(tourMapper::mapToTourDTO).collect(Collectors.toList());
 

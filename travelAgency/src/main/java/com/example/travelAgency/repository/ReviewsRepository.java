@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface ReviewsRepository extends JpaRepository<Reviews,Long> {
 
-    List<Reviews> findByTourId(Long tourId);
+    List<Reviews> findByTour_TourId(Long tourId);
 }

@@ -46,7 +46,7 @@ public class ReviewsServiceImpl implements ReviewsService {
 
     @Override
     public List<ResponseReviewDTO> getReviewsByTourId(Long tourId) {
-        List<Reviews> reviews = reviewsRepository.findByTourId(tourId);
+        List<Reviews> reviews = reviewsRepository.findByTour_TourId(tourId);
         List<ResponseReviewDTO> responseReviewDTOS = new ArrayList<>();
         for (Reviews review:reviews){
             responseReviewDTOS.add(reviewsMapper.mapToReviewsDTO(review));
