@@ -11,5 +11,5 @@ import lombok.*;
 public class RequestReviewDTO {
 
     private Long reviewId;
-    private String reviewName;
+    private String description;
 }

@@ -11,6 +11,6 @@ import lombok.*;
 public class ResponseReviewDTO {
 
     private Long reviewId;
-    private String reviewName;
+    private String description;
     private Long tourId;
 }
