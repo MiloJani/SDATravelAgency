@@ -1,14 +1,11 @@
 package com.example.travelAgency.mappers;
 
-import com.example.travelAgency.dto.categoryDTOs.CategoryDTO;
 import com.example.travelAgency.dto.tourDTOs.RequestTourDTO;
 import com.example.travelAgency.dto.tourDTOs.ResponseTourDTO;
-import com.example.travelAgency.entity.Category;
 import com.example.travelAgency.entity.Reviews;
 import com.example.travelAgency.entity.Tour;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
