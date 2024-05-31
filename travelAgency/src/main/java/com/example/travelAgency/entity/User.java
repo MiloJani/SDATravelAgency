@@ -12,12 +12,16 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "USERS")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private Long userId;
+
+    @Column(name = "USERNAME", nullable = false, unique = true)
+    private String username;
 
     @Column(name = "EMAIL",unique = true,nullable = false)
     private String email;
