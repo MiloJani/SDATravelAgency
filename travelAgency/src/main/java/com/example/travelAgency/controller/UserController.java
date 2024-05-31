@@ -21,7 +21,7 @@ import java.util.List;
 @Tag(
         name = "CRUD REST APIs for User Resource"
 )
-@SecurityRequirement(name = "basicAuth")
+//@SecurityRequirement(name = "basicAuth")
 public class UserController {
 
     private UserService userService;

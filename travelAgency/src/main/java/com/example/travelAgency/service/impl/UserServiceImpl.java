@@ -22,6 +22,20 @@ public class UserServiceImpl implements UserService {
 //    private PasswordEncoder passwordEncoder;
     private RoleMapper roleMapper;
 
+//    public RegisterResponseDTO registerUser(RegisterRequestDTO request) {
+//        User user = new User();
+//        user.setUsername(request.getUsername());
+//        user.setPassword(passwordEncoder.encode(request.getPassword()));
+//
+//        Client client = new Client();
+//        client.setFirstName(request.getFirstName());
+//        client.setLastName(request.getLastName());
+//        client.setUser(user);
+//        user.setClient(client);
+//
+//        userRepository.save(user);
+//        return new RegisterResponseDTO("User registered successfully");
+//    }
     public ResponseUserDTO saveUser(RequestUserDTO requestUserDTO) {
         User userEntity = userMapper.mapToUser(requestUserDTO);
 //        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
