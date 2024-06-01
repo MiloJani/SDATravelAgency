@@ -19,6 +19,11 @@ public interface TourService {
 
     void deleteTour(Long id) ;
 
+
+
+
+
+
     List<ResponseTourDTO> searchTours(
             String tourName,LocalDate startDate,LocalDate endDate,Double price,
             String startingCity,String destinationCity,String category);

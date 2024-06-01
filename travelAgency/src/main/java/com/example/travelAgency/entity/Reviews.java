@@ -7,8 +7,6 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reviews {
