@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ClientService {
     ResponseClientDTO saveClient(RequestClientDTO requestClientDTO);
+//    ResponseClientDTO addTourToClient(Long tourId,Long clientId);
     ResponseClientDTO findClientById(Long id);
     List<ResponseClientDTO> findAllClients();
     ResponseClientDTO updateClient(Long id, RequestClientDTO requestClientDTO);

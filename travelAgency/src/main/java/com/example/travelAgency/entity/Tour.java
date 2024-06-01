@@ -44,7 +44,7 @@ public class Tour {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
     @JoinColumn(name = "TOUR_ID")
     private Set<Reviews> reviews;
 

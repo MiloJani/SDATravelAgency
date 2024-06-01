@@ -11,6 +11,7 @@ import com.example.travelAgency.service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,10 +26,32 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ResponseClientDTO saveClient(RequestClientDTO requestClientDTO) {
+
         Client clientEntity = clientMapper.mapToClient(requestClientDTO);
+
+        Set<Tour> tours = requestClientDTO.getTourIds().stream()
+                .map(tourId -> tourRepository.findById(tourId)
+                        .orElseThrow(() -> new RuntimeException("Tour not found with ID: " + tourId)))
+                .collect(Collectors.toSet());
+
+        clientEntity.setTours(tours);
+
         Client savedClient = clientRepository.save(clientEntity);
+
         return clientMapper.mapToResponseClientDto(savedClient);
     }
+
+//    @Override
+//    public ResponseClientDTO addTourToClient(Long tourId,Long clientId) {
+//        Client client = clientRepository.findById(clientId).orElseThrow(() -> new RuntimeException("Client does not exist"));
+//        Tour tour = tourRepository.findById(tourId).orElseThrow(()->new RuntimeException("Tour does not exist"));
+//
+//        client.setTours(Collections.singleton(tour));
+//        Client save = clientRepository.save(client);
+//        return clientMapper.mapToResponseClientDto(save);
+//
+//    }
+
 
     @Override
     public ResponseClientDTO findClientById(Long id) {
@@ -65,5 +88,3 @@ public class ClientServiceImpl implements ClientService {
         clientRepository.deleteById(id);
     }
 }
-
-

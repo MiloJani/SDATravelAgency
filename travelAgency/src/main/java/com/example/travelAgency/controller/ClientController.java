@@ -34,6 +34,20 @@ public class ClientController {
         return new ResponseEntity<>(clientService.saveClient(requestClientDTO), HttpStatus.CREATED);
     }
 
+//    @Operation(
+//            summary = "Add Tour to Client REST API",
+//            description = "Create Client REST API is used to add a tour to a client into the database"
+//    )
+//    @ApiResponse(
+//            responseCode = "200",
+//            description = "Http Status 200 OK"
+//    )
+//    @PostMapping("/addTour")
+//    public ResponseEntity<ResponseClientDTO> addTourToClient(@PathVariable Long tourId,@PathVariable Long clientId){
+//
+//        return new ResponseEntity<>(clientService.addTourToClient(tourId,clientId),HttpStatus.OK);
+//    }
+
     @Operation(
             summary = "Find Client By Id REST API",
             description = "Find Client By Id REST API is used to get a single client from the database"
