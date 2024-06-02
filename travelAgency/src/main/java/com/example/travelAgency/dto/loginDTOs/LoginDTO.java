@@ -8,8 +8,9 @@ import lombok.Setter;
 @Setter
 public class LoginDTO {
 
-    @NotBlank(message = "Username or Email cannot be empty")
-    private String usernameOrEmail;
+
+    private String username;
+    private String email;
 
     @NotBlank(message = "Password cannot be empty")
     private String password;

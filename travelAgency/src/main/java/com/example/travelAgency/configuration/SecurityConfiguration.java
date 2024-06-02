@@ -23,11 +23,24 @@ public class SecurityConfiguration {
 
          http.csrf((csrf) -> csrf.disable())
                     .authorizeHttpRequests((authorize) -> authorize
-                            .requestMatchers("/swagger-ui/**").permitAll()
-                            .requestMatchers("/v3/api-docs/**").permitAll()
-                            .requestMatchers("/api/tour/**").permitAll()
+                            .requestMatchers(HttpMethod.GET,"/api/").permitAll()
+                            .requestMatchers(HttpMethod.POST,"/api/auth/login").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/swagger-resources/**").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/webjars/**").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/v2/api-docs").permitAll()
+                            .requestMatchers(HttpMethod.GET,"swagger-ui/index.html").permitAll()
+                            .requestMatchers(HttpMethod.POST,"/api/").hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.PUT,"/api/").hasAnyRole("ADMIN","USER")
+//                            .requestMatchers("/swagger-ui/**").permitAll()
+//                            .requestMatchers("/v3/api-docs/**").permitAll()
+//                            .requestMatchers("/api/tour/**").permitAll()
+//                            .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                             .requestMatchers("/api/**").permitAll()
-                           .anyRequest().authenticated()).httpBasic(Customizer.withDefaults());
+                           .anyRequest().authenticated())
+                 .httpBasic(Customizer.withDefaults());
 
            return http.build();
    }

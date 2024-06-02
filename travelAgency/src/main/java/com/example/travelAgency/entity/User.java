@@ -25,7 +25,7 @@ public class User {
     @Column(name = "EMAIL",unique = true,nullable = false)
     private String email;
 
-    @Column(name = "PASSWORD",nullable = false,length = 30)
+    @Column(name = "PASSWORD",nullable = false)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
