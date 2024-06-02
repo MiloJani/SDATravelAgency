@@ -1,5 +1,6 @@
 package com.example.travelAgency.dto.tourDTOs;
 
+import com.example.travelAgency.dto.clientDTOs.ResponseClientDTO;
 import com.example.travelAgency.dto.reviewDTOs.ResponseReviewDTO;
 import lombok.*;
 

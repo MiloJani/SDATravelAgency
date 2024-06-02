@@ -47,5 +47,12 @@ public class Tour {
     @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Reviews> reviews;
 
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "TOUR_CLIENTS",
+//            joinColumns = @JoinColumn(name = "TOUR_ID"),
+//            inverseJoinColumns = @JoinColumn(name = "CLIENT_ID")
+//    )
+//    private Set<Client> clients;
 }
 

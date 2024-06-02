@@ -1,21 +1,27 @@
 package com.example.travelAgency.mappers;
 
+import com.example.travelAgency.dto.clientDTOs.ResponseClientDTO;
 import com.example.travelAgency.dto.reviewDTOs.ResponseReviewDTO;
 import com.example.travelAgency.dto.tourDTOs.RequestTourDTO;
 import com.example.travelAgency.dto.tourDTOs.ResponseTourDTO;
+import com.example.travelAgency.entity.Client;
 import com.example.travelAgency.entity.Reviews;
 import com.example.travelAgency.entity.Tour;
+import com.example.travelAgency.repository.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Component
 public class TourMapper {
     private ReviewsMapper reviewsMapper;
+    private ClientMapper clientMapper;
+    private ClientRepository clientRepository;
     public ResponseTourDTO mapToTourDTO(Tour tour) {
 
             ResponseTourDTO responseTourDTO=new ResponseTourDTO();
@@ -39,6 +45,7 @@ public class TourMapper {
 //  responseTourDTO.setResponseReviewDto(tour.getReviews().stream().map(review -> reviewMapper.mapToReviewsDTO(review)).collect(Collectors.toSet()));
             responseTourDTO.setCategoryId(tour.getCategory().getCategoryId());
 
+
             return responseTourDTO;
 //        return ResponseTourDTO.builder()
 //                .tourId(tour.getTourId())
@@ -59,6 +66,7 @@ public class TourMapper {
             tour.setEndDate(requestTourDTO.getEndDate());
             tour.setStartingCity(requestTourDTO.getStartingCity());
             tour.setDestinationCity(requestTourDTO.getDestinationCity());
+
             return tour;
 
 

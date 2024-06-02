@@ -16,5 +16,4 @@ public class ResponseClientDTO {
     private Long clientId;
     private String clientName;
     private String phoneNumber;
-    private Set<ResponseTourDTO> tours;  // You can define a TourDTO to represent tour details
 }

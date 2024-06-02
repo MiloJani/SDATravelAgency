@@ -1,8 +1,10 @@
 package com.example.travelAgency.dto.tourDTOs;
 
+import com.example.travelAgency.entity.Client;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter

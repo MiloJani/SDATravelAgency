@@ -3,9 +3,11 @@ package com.example.travelAgency.service.impl;
 import com.example.travelAgency.dto.tourDTOs.RequestTourDTO;
 import com.example.travelAgency.dto.tourDTOs.ResponseTourDTO;
 import com.example.travelAgency.entity.Category;
+import com.example.travelAgency.entity.Client;
 import com.example.travelAgency.entity.Tour;
 import com.example.travelAgency.mappers.TourMapper;
 import com.example.travelAgency.repository.CategoryRepository;
+import com.example.travelAgency.repository.ClientRepository;
 import com.example.travelAgency.repository.TourRepository;
 import com.example.travelAgency.service.TourService;
 import lombok.AllArgsConstructor;
@@ -24,6 +26,7 @@ public class TourServiceImpl implements TourService {
 
     private final TourRepository tourRepository;
     private final CategoryRepository categoryRepository;
+    private final ClientRepository clientRepository;
     private TourMapper tourMapper;
 
 //    public TourServiceImpl(TourRepository tourRepository, CategoryRepository categoryRepository, TourMapper tourMapper) {
@@ -57,6 +60,7 @@ public class TourServiceImpl implements TourService {
                 () -> new RuntimeException("Category with id: " + requestTourDTO.getCategoryId() + " was not found!"));
         Tour tour = tourMapper.mapToTourEntity(requestTourDTO);
         tour.setCategory(foundCategory);
+
         Tour savedTour = tourRepository.save(tour);
         return tourMapper.mapToTourDTO(savedTour);
     }

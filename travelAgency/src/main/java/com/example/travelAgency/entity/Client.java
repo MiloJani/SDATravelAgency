@@ -31,11 +31,4 @@ public class Client {
 //    @JoinColumn(name = "CLIENT_ID")
 //    private List<Reviews> reviews;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "CLIENT_TOURS",
-            joinColumns = @JoinColumn(name = "CLIENT_ID"),
-            inverseJoinColumns = @JoinColumn(name = "TOUR_ID")
-    )
-    private Set<Tour> tours;
 }

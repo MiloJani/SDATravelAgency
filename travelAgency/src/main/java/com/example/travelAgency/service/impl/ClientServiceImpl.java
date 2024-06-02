@@ -29,13 +29,6 @@ public class ClientServiceImpl implements ClientService {
 
         Client clientEntity = clientMapper.mapToClient(requestClientDTO);
 
-        Set<Tour> tours = requestClientDTO.getTourIds().stream()
-                .map(tourId -> tourRepository.findById(tourId)
-                        .orElseThrow(() -> new RuntimeException("Tour not found with ID: " + tourId)))
-                .collect(Collectors.toSet());
-
-        clientEntity.setTours(tours);
-
         Client savedClient = clientRepository.save(clientEntity);
 
         return clientMapper.mapToResponseClientDto(savedClient);
@@ -73,11 +66,6 @@ public class ClientServiceImpl implements ClientService {
         clientEntity.setClientName(requestClientDTO.getClientName());
         clientEntity.setPhoneNumber(requestClientDTO.getPhoneNumber());
 
-        Set<Tour> tours = requestClientDTO.getTourIds().stream()
-                .map(tourId -> tourRepository.findById(tourId)
-                        .orElseThrow(() -> new RuntimeException("Tour not found with ID: " + tourId)))
-                .collect(Collectors.toSet());
-        clientEntity.setTours(tours);
 
         Client savedClient = clientRepository.save(clientEntity);
         return clientMapper.mapToResponseClientDto(savedClient);

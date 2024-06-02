@@ -14,5 +14,4 @@ public class RequestClientDTO {
 
     private String clientName;
     private String phoneNumber;
-    private Set<Long> tourIds;
 }
