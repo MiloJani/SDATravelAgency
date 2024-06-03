@@ -1,5 +1,7 @@
 package com.example.travelAgency.configuration;
 
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,6 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableMethodSecurity
 @EnableWebSecurity
+@SecurityScheme(name = "basicAuth", type = SecuritySchemeType.HTTP, scheme = "basic")
 public class SecurityConfiguration {
 
    @Bean
@@ -25,6 +28,7 @@ public class SecurityConfiguration {
                     .authorizeHttpRequests((authorize) -> authorize
                             .requestMatchers(HttpMethod.GET,"/api/").permitAll()
                             .requestMatchers(HttpMethod.POST,"/api/auth/login").permitAll()
+                            .requestMatchers(HttpMethod.POST,"/api/auth/register").permitAll()
                             .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
                             .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
                             .requestMatchers(HttpMethod.GET, "/swagger-resources/**").permitAll()
@@ -34,6 +38,7 @@ public class SecurityConfiguration {
                             .requestMatchers(HttpMethod.GET,"swagger-ui/index.html").permitAll()
                             .requestMatchers(HttpMethod.POST,"/api/").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.PUT,"/api/").hasAnyRole("ADMIN","USER")
+//                            .requestMatchers(HttpMethod.POST,"/api/auth/registerStaff").permitAll()
 //                            .requestMatchers("/swagger-ui/**").permitAll()
 //                            .requestMatchers("/v3/api-docs/**").permitAll()
 //                            .requestMatchers("/api/tour/**").permitAll()

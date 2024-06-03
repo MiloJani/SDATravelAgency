@@ -11,8 +11,6 @@ public class LoginDTO {
 
     private String username;
     private String email;
-
-    @NotBlank(message = "Password cannot be empty")
     private String password;
 
 }

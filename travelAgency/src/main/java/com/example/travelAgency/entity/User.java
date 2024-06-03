@@ -39,6 +39,10 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CLIENT_ID", referencedColumnName = "clientId")
     private Client client;
+
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "STAFF_ID",referencedColumnName = "staffId")
+    private Staff staff;
 }
 
 
