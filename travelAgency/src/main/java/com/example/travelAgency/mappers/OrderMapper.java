@@ -39,6 +39,7 @@ public class OrderMapper {
         dto.setId(order.getId());
         dto.setOrderDate(order.getOrderDate());
         dto.setClientId(order.getClient().getClientId());
+        dto.setPaymentId(order.getPayment().getPaymentId());
         return dto;
     }
 

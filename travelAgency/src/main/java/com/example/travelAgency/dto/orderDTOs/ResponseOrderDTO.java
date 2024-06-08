@@ -28,4 +28,7 @@ public class ResponseOrderDTO {
 
     @NotNull(message = "Tours list cannot be null")
     private List<ResponseOrderTourDTO> tours;
+
+    @NotNull(message = "Payment id cannot be null")
+    private Long paymentId;
 }

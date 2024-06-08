@@ -1,6 +1,7 @@
 package com.example.travelAgency.dto.orderDTOs;
 
 import com.example.travelAgency.dto.orderTourDTOs.RequestOrderTourDTO;
+import com.example.travelAgency.dto.paymentDTOs.RequestPaymentDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
@@ -28,4 +29,6 @@ public class RequestOrderDTO {
 
     @NotEmpty(message = "Tours list cannot be empty")
     private List<Long> tours;
+
+    private RequestPaymentDTO requestPaymentDTO;
 }

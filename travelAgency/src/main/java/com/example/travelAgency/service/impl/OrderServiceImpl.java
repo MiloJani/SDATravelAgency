@@ -5,12 +5,15 @@ import com.example.travelAgency.dto.orderDTOs.RequestOrderDTO;
 import com.example.travelAgency.dto.orderDTOs.ResponseOrderDTO;
 import com.example.travelAgency.entity.Order;
 import com.example.travelAgency.entity.OrderTour;
+import com.example.travelAgency.entity.Payment;
 import com.example.travelAgency.entity.Tour;
 import com.example.travelAgency.mappers.OrderMapper;
 import com.example.travelAgency.repository.OrderRepository;
 import com.example.travelAgency.repository.OrderTourRepository;
+import com.example.travelAgency.repository.PaymentRepository;
 import com.example.travelAgency.repository.TourRepository;
 import com.example.travelAgency.service.OrderService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +29,13 @@ public class OrderServiceImpl implements OrderService {
 
     private OrderTourRepository orderTourRepository;
 
+    private PaymentRepository paymentRepository;
+
     private TourRepository tourRepository;
 
     private OrderMapper orderMapper;
 
+    @Transactional
     public ResponseOrderDTO createOrder(RequestOrderDTO requestOrderDTO) {
         Order order = orderMapper.toEntity(requestOrderDTO);
         Order savedOrder = orderRepository.save(order);
@@ -47,6 +53,18 @@ public class OrderServiceImpl implements OrderService {
         }
 
         orderTourRepository.saveAll(orderTours);
+
+        Payment payment = new Payment();
+        payment.setCardHolderName(requestOrderDTO.getRequestPaymentDTO().getCardHolderName());
+        payment.setCardNumber(requestOrderDTO.getRequestPaymentDTO().getCardNumber());
+        payment.setExpirationMonth(requestOrderDTO.getRequestPaymentDTO().getExpirationMonth());
+        payment.setExpirationYear(requestOrderDTO.getRequestPaymentDTO().getExpirationYear());
+        payment.setCvv(requestOrderDTO.getRequestPaymentDTO().getCvv());
+        payment.setOrder(savedOrder);
+        paymentRepository.save(payment);
+
+        savedOrder.setPayment(payment);
+        orderRepository.save(savedOrder);
 
         return orderMapper.toDto(savedOrder);
     }
