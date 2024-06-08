@@ -16,8 +16,8 @@ public class RegisterStaffDTO extends LoginDTO {
     private String staffName;
 
     @NotBlank(message = "Phone number is mandatory")
-//    @Pattern(regexp = "\\+?[0-9. ()-]{7,25}", message = "Phone number is invalid")
-    @Schema(example = "+393331234567")
+    @Pattern(regexp = "\\+355\\d{9}", message = "Phone number is invalid. It should start with +355 followed by 9 digits")
+    @Schema(example = "+355123456789")
     private String phoneNumber;
 
     @Positive(message = "Experience years must be positive")

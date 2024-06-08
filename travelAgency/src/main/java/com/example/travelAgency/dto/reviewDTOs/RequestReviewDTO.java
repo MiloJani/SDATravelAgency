@@ -14,11 +14,11 @@ import lombok.*;
 public class RequestReviewDTO {
 
     @NotBlank(message = "Description is mandatory")
-    @Schema(example = "Nice tour")
+    @Schema(example = "Nice tour 10/10 recommend")
     private String description;
 
     @NotBlank(message = "Email is mandatory")
     @Email(message = "Email should be valid")
-    @Schema(example = "user123@gmail.com")
+    @Schema(example = "Milo@gmail.com")
     private String email;
 }

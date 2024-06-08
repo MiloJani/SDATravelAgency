@@ -21,13 +21,15 @@ public class RequestOrderDTO {
 
     @NotNull(message = "Order date is mandatory")
     @FutureOrPresent(message = "Order date must be in the present or future")
-    @Schema(example = "2014-02-09")
+    @Schema(example = "2024-02-09T10:00:00")
     private LocalDateTime orderDate;
 
     @NotNull(message = "Client ID is mandatory")
+    @Schema(example = "1")
     private Long clientId;
 
     @NotEmpty(message = "Tours list cannot be empty")
+    @Schema(example = "1, 2, 3")
     private List<Long> tours;
 
     private RequestPaymentDTO requestPaymentDTO;

@@ -20,7 +20,7 @@ import java.util.Set;
 public class RequestTourDTO {
 
     @NotBlank(message = "Tour name is mandatory")
-    @Schema(example = "Summer tour")
+    @Schema(example = "Tirane-Durres")
     private String tourName;
 
     @NotNull(message = "Start date is mandatory")

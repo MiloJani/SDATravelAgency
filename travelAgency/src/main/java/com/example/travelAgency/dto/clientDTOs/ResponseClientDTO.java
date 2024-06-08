@@ -16,12 +16,15 @@ import java.util.Set;
 @NoArgsConstructor
 public class ResponseClientDTO {
 
+    @Schema(example = "1")
     private Long clientId;
 
     @NotBlank(message = "Client name is mandatory")
+    @Schema(example = "Milo")
     private String clientName;
 
     @NotBlank(message = "Phone number is mandatory")
-//    @Pattern(regexp = "\\+?[0-9. ()-]{7,25}", message = "Phone number is invalid")
+    @Pattern(regexp = "\\+355\\d{9}", message = "Phone number is invalid. It should start with +355 followed by 9 digits")
+    @Schema(example = "+355123456789")
     private String phoneNumber;
 }

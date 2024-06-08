@@ -18,17 +18,21 @@ import java.util.List;
 public class ResponseOrderDTO {
 
     @NotNull(message = "Order ID is mandatory")
+    @Schema(example = "1")
     private Long id;
 
     @NotNull(message = "Order date is mandatory")
+    @Schema(example = "2024-02-09T10:00:00")
     private LocalDateTime orderDate;
 
     @NotNull(message = "Client ID is mandatory")
+    @Schema(example = "1")
     private Long clientId;
 
     @NotNull(message = "Tours list cannot be null")
     private List<ResponseOrderTourDTO> tours;
 
     @NotNull(message = "Payment id cannot be null")
+    @Schema(example = "1")
     private Long paymentId;
 }

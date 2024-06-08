@@ -16,11 +16,11 @@ import java.util.Set;
 public class RequestClientDTO {
 
     @NotBlank(message = "Client name is mandatory")
-    @Schema(example = "Jonny")
+    @Schema(example = "Milo")
     private String clientName;
 
     @NotBlank(message = "Phone number is mandatory")
-    @Schema(example = "+393331234567")
-//    @Pattern(regexp = "\\+?[0-9. ()-]{7,25}", message = "Phone number is invalid")
+    @Pattern(regexp = "\\+355\\d{9}", message = "Phone number is invalid. It should start with +355 followed by 9 digits")
+    @Schema(example = "+355123456789")
     private String phoneNumber;
 }

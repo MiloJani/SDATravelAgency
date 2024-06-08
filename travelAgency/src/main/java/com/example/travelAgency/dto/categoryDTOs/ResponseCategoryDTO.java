@@ -12,9 +12,11 @@ import lombok.*;
 @NoArgsConstructor
 public class ResponseCategoryDTO {
 
+    @Schema(example = "1")
     private Long categoryId;
 
     @NotBlank(message = "Category name is mandatory")
+    @Schema(example = "SummerTour")
     private String categoryName;
 }
 

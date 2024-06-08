@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,12 +23,16 @@ public class RequestUserDTO {
 
     @NotNull(message = "Password cannot be null")
     @Size(min = 6, max = 100, message = "Password must be between 6 and 100 characters")
-    @Schema(example = "abc1234")
+    @Pattern(
+            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$",
+            message = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character"
+    )
+    @Schema(example = "Milo@20")
     private String password;
 
     @NotNull(message = "Email cannot be null")
     @Email(message = "Email should be valid")
-    @Schema(example = "user123@gmail.com")
+    @Schema(example = "Milo@gmail.com")
     private String email;
 
     @Valid

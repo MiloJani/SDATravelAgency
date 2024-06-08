@@ -13,7 +13,7 @@ import lombok.*;
 public class CategoryDTO {
 
     @NotBlank(message = "Category name is mandatory")
-    @Schema(example = "Adventure")
+    @Schema(example = "SummerTour")
     private String categoryName;
 }
 
