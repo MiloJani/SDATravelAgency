@@ -2,6 +2,7 @@ package com.example.travelAgency.dto.orderDTOs;
 
 import com.example.travelAgency.dto.clientDTOs.ResponseClientDTO;
 import com.example.travelAgency.dto.orderTourDTOs.ResponseOrderTourDTO;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class ResponseOrderDTO {
     private Long id;
 
     @NotNull(message = "Order date is mandatory")
+    @Schema(example = "2012-04-03")
     private LocalDateTime orderDate;
 
     @NotNull(message = "Client ID is mandatory")
