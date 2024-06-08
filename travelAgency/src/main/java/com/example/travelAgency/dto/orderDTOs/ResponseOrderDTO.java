@@ -21,7 +21,6 @@ public class ResponseOrderDTO {
     private Long id;
 
     @NotNull(message = "Order date is mandatory")
-    @Schema(example = "2012-04-03")
     private LocalDateTime orderDate;
 
     @NotNull(message = "Client ID is mandatory")

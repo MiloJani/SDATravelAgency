@@ -15,7 +15,6 @@ public class ResponseCategoryDTO {
     private Long categoryId;
 
     @NotBlank(message = "Category name is mandatory")
-    @Schema(example = "Adventure")
     private String categoryName;
 }
 

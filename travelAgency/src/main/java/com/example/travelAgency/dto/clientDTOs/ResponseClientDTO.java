@@ -19,7 +19,6 @@ public class ResponseClientDTO {
     private Long clientId;
 
     @NotBlank(message = "Client name is mandatory")
-    @Schema(example = "Jonny")
     private String clientName;
 
     @NotBlank(message = "Phone number is mandatory")
