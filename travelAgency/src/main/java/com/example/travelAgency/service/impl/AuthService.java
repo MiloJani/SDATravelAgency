@@ -1,5 +1,7 @@
 package com.example.travelAgency.service.impl;
 
+import com.example.travelAgency.constraint.MessageConstraint;
+import com.example.travelAgency.constraint.RoleConstraint;
 import com.example.travelAgency.dto.loginDTOs.LoginDTO;
 import com.example.travelAgency.dto.loginDTOs.RegisterClientDTO;
 import com.example.travelAgency.dto.loginDTOs.RegisterStaffDTO;
@@ -55,7 +57,7 @@ public class AuthService {
     public String register(RegisterClientDTO registerClientDTO){
 
         if (userRepository.findByUsernameOrEmail(registerClientDTO.getUsername(),registerClientDTO.getEmail()).isPresent()){
-            throw new RuntimeException("Exists");
+            throw new RuntimeException(MessageConstraint.USER_ALREADY_EXISTS);
         }
             User newUser = new User();
             newUser.setUsername(registerClientDTO.getUsername());
@@ -63,7 +65,7 @@ public class AuthService {
             newUser.setPassword(passwordEncoder.encode(registerClientDTO.getPassword()));
 
             Set<Role> roles = new HashSet<>();
-            roles.add(roleRepository.findByRoleName("ROLE_USER").orElseThrow(() -> new RuntimeException("Role not found")));
+            roles.add(roleRepository.findByRoleName("ROLE_USER").orElseThrow(() -> new RuntimeException(RoleConstraint.user)));
             newUser.setRole(roles);
 
             Client newClient = new Client();

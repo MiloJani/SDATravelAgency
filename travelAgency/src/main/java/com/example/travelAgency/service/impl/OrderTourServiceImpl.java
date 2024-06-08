@@ -1,5 +1,6 @@
 package com.example.travelAgency.service.impl;
 
+import com.example.travelAgency.constraint.MessageConstraint;
 import com.example.travelAgency.dto.orderTourDTOs.RequestOrderTourDTO;
 import com.example.travelAgency.dto.orderTourDTOs.ResponseOrderTourDTO;
 import com.example.travelAgency.entity.OrderTour;
@@ -31,7 +32,7 @@ public class OrderTourServiceImpl implements OrderTourService {
     }
 
     public ResponseOrderTourDTO getOrderTourById(Long id) {
-        OrderTour orderTour = orderTourRepository.findById(id).orElseThrow(() -> new RuntimeException("OrderTour not found"));
+        OrderTour orderTour = orderTourRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.ORDERTOUR_NOT_FOUND));
         Tour tour = tourRepository.findById(orderTour.getTour().getTourId()).orElseThrow(()->new RuntimeException("No tour"));
         orderTour.setTour(tour);
         return orderTourMapper.toDto(orderTour);
@@ -40,14 +41,14 @@ public class OrderTourServiceImpl implements OrderTourService {
     public List<ResponseOrderTourDTO> getAllOrderTours() {
         List<OrderTour> orderTours = orderTourRepository.findAll();
         for (OrderTour orderT:orderTours){
-            Tour tour = tourRepository.findById(orderT.getTour().getTourId()).orElseThrow(()->new RuntimeException("No tour"));
+            Tour tour = tourRepository.findById(orderT.getTour().getTourId()).orElseThrow(()->new RuntimeException(MessageConstraint.TOUR_NOT_FOUND));
             orderT.setTour(tour);
         }
         return orderTours.stream().map(orderTourMapper::toDto).collect(Collectors.toList());
     }
 
     public ResponseOrderTourDTO updateOrderTour(Long id, RequestOrderTourDTO requestOrderTourDTO) {
-        OrderTour existingOrderTour = orderTourRepository.findById(id).orElseThrow(() -> new RuntimeException("OrderTour not found"));
+        OrderTour existingOrderTour = orderTourRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.ORDERTOUR_NOT_FOUND));
 
         Tour tour = new Tour();
         tour.setTourId(requestOrderTourDTO.getTourId());
@@ -58,7 +59,7 @@ public class OrderTourServiceImpl implements OrderTourService {
     }
 
     public void deleteOrderTour(Long id) {
-        OrderTour orderTour = orderTourRepository.findById(id).orElseThrow(() -> new RuntimeException("OrderTour not found"));
+        OrderTour orderTour = orderTourRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.ORDERTOUR_NOT_FOUND));
         orderTourRepository.delete(orderTour);
     }
 }

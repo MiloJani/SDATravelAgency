@@ -1,5 +1,6 @@
 package com.example.travelAgency.service.impl;
 
+import com.example.travelAgency.constraint.MessageConstraint;
 import com.example.travelAgency.dto.orderDTOs.RequestOrderDTO;
 import com.example.travelAgency.dto.orderDTOs.ResponseOrderDTO;
 import com.example.travelAgency.entity.Order;
@@ -37,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
         List<OrderTour> orderTours = new ArrayList<>();
         for (Long tourId : requestOrderDTO.getTours()) {
             Tour tour = tourRepository.findById(tourId)
-                    .orElseThrow(() -> new RuntimeException("Tour with ID " + tourId + " not found"));
+                    .orElseThrow(() -> new RuntimeException(MessageConstraint.TOUR_NOT_FOUND));
 
             OrderTour orderTour = new OrderTour();
             orderTour.setOrder(savedOrder);
@@ -53,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     public ResponseOrderDTO getOrderById(Long id) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
+        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.ORDER_NOT_FOUND));
 
         return orderMapper.toDto(order);
     }
@@ -64,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public ResponseOrderDTO updateOrder(Long id, RequestOrderDTO requestOrderDTO) {
-        Order existingOrder = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
+        Order existingOrder = orderRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.ORDER_NOT_FOUND));
         existingOrder.setOrderDate(requestOrderDTO.getOrderDate());
         List<OrderTour> tours = existingOrder.getTours();
 
@@ -76,7 +77,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public void deleteOrder(Long id) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
+        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.ORDER_NOT_FOUND));
         orderRepository.delete(order);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.travelAgency.service.impl;
 
+import com.example.travelAgency.constraint.MessageConstraint;
 import com.example.travelAgency.dto.clientDTOs.RequestClientDTO;
 import com.example.travelAgency.dto.clientDTOs.ResponseClientDTO;
 import com.example.travelAgency.entity.Client;
@@ -48,7 +49,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ResponseClientDTO findClientById(Long id) {
-        Client client = clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Client not found"));
+        Client client = clientRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.CLIENT_NOT_FOUND));
         return clientMapper.mapToResponseClientDto(client);
     }
 
@@ -62,7 +63,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ResponseClientDTO updateClient(Long id, RequestClientDTO requestClientDTO) {
-        Client clientEntity = clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Client not found"));
+        Client clientEntity = clientRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.CLIENT_NOT_FOUND));
         clientEntity.setClientName(requestClientDTO.getClientName());
         clientEntity.setPhoneNumber(requestClientDTO.getPhoneNumber());
 

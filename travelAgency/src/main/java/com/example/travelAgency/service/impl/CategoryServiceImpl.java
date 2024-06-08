@@ -1,5 +1,6 @@
 package com.example.travelAgency.service.impl;
 
+import com.example.travelAgency.constraint.MessageConstraint;
 import com.example.travelAgency.dto.categoryDTOs.CategoryDTO;
 import com.example.travelAgency.dto.categoryDTOs.ResponseCategoryDTO;
 import com.example.travelAgency.entity.Category;
@@ -37,7 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseCategoryDTO getCategoryById(Long id) {
         Category foundCategory = categoryRepository.findById(id).orElseThrow(
-                ()->new RuntimeException("Category with id:"+id+"  not found")
+                ()->new RuntimeException(MessageConstraint.CATEGORY_NOT_FOUND)
         );
         return categoryMapper.mapToCategoryDTO(foundCategory);
     }
@@ -52,7 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseCategoryDTO updateCategory(CategoryDTO categoryDTO, Long id) {
         Category foundCategory = categoryRepository.findById(id).orElseThrow(
-                ()->new RuntimeException("Category with id:"+id+"  not found")
+                ()->new RuntimeException(MessageConstraint.CATEGORY_NOT_FOUND)
         );
         foundCategory.setCategoryName(categoryDTO.getCategoryName());
         Category updatedCategory = categoryRepository.save(foundCategory);
@@ -62,7 +63,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteCategory(Long id) {
         Category foundCategory = categoryRepository.findById(id).orElseThrow(
-                ()->new RuntimeException("Category with id:"+id+"  not found")
+                ()->new RuntimeException(MessageConstraint.CATEGORY_NOT_FOUND)
         );
         categoryRepository.delete(foundCategory);
     }
