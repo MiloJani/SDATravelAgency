@@ -1,9 +1,6 @@
 package com.example.travelAgency.dto.loginDTOs;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +8,11 @@ import lombok.Setter;
 @Setter
 public class RegisterClientDTO extends LoginDTO {
 
+    @NotBlank(message = "Client name is mandatory")
     private String clientName;
+
+    @NotBlank(message = "Phone number is mandatory")
+//    @Pattern(regexp = "\\+?[0-9. ()-]{7,25}", message = "Phone number is invalid")
     private String phoneNumber;
 
 }

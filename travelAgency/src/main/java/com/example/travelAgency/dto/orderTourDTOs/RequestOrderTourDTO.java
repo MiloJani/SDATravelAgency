@@ -1,5 +1,6 @@
 package com.example.travelAgency.dto.orderTourDTOs;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -9,5 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RequestOrderTourDTO {
+
+    @NotNull(message = "Tour ID is mandatory")
     private Long tourId;
 }
