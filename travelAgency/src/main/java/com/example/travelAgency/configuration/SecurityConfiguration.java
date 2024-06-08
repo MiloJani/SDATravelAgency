@@ -49,10 +49,7 @@ public class SecurityConfiguration {
 
            return http.build();
    }
-
-
-
-@Bean
+   @Bean
 AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
             return configuration.getAuthenticationManager();
             }
