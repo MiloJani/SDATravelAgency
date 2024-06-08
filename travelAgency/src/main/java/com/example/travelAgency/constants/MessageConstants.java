@@ -1,9 +1,7 @@
-package com.example.travelAgency.constraint;
-
-import lombok.Getter;
+package com.example.travelAgency.constants;
 
 
-public class MessageConstraint {
+public class MessageConstants {
     public static final String CATEGORY_NOT_FOUND = "CATEGORY NOT FOUND";
     public static final String CATEGORY_ALREADY_EXISTS = "CATEGORY ALREADY EXISTS";
     public static final String CLIENT_NOT_FOUND = "CLIENT NOT FOUND";

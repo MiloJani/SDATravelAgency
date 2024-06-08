@@ -1,6 +1,6 @@
-package com.example.travelAgency.constraint;
+package com.example.travelAgency.constants;
 
-public class RoleConstraint {
+public class RoleConstants {
     public static final String admin = "Admin role not found";
     public static final String staff = "Staff role not found";
     public static final String manager = "Manager role not found";

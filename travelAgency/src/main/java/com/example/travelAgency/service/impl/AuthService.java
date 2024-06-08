@@ -1,7 +1,7 @@
 package com.example.travelAgency.service.impl;
 
-import com.example.travelAgency.constraint.MessageConstraint;
-import com.example.travelAgency.constraint.RoleConstraint;
+import com.example.travelAgency.constants.MessageConstants;
+import com.example.travelAgency.constants.RoleConstants;
 import com.example.travelAgency.dto.loginDTOs.LoginDTO;
 import com.example.travelAgency.dto.loginDTOs.RegisterClientDTO;
 import com.example.travelAgency.dto.loginDTOs.RegisterStaffDTO;
@@ -18,12 +18,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.management.relation.RoleNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -57,7 +55,7 @@ public class AuthService {
     public String register(RegisterClientDTO registerClientDTO){
 
         if (userRepository.findByUsernameOrEmail(registerClientDTO.getUsername(),registerClientDTO.getEmail()).isPresent()){
-            throw new RuntimeException(MessageConstraint.USER_ALREADY_EXISTS);
+            throw new RuntimeException(MessageConstants.USER_ALREADY_EXISTS);
         }
             User newUser = new User();
             newUser.setUsername(registerClientDTO.getUsername());
@@ -65,7 +63,7 @@ public class AuthService {
             newUser.setPassword(passwordEncoder.encode(registerClientDTO.getPassword()));
 
             Set<Role> roles = new HashSet<>();
-            roles.add(roleRepository.findByRoleName("ROLE_USER").orElseThrow(() -> new RuntimeException(RoleConstraint.user)));
+            roles.add(roleRepository.findByRoleName("ROLE_USER").orElseThrow(() -> new RuntimeException(RoleConstants.user)));
             newUser.setRole(roles);
 
             Client newClient = new Client();

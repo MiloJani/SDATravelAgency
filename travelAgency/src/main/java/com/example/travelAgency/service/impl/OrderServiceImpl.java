@@ -1,6 +1,6 @@
 package com.example.travelAgency.service.impl;
 
-import com.example.travelAgency.constraint.MessageConstraint;
+import com.example.travelAgency.constants.MessageConstants;
 import com.example.travelAgency.dto.orderDTOs.RequestOrderDTO;
 import com.example.travelAgency.dto.orderDTOs.ResponseOrderDTO;
 import com.example.travelAgency.entity.Order;
@@ -12,7 +12,6 @@ import com.example.travelAgency.repository.OrderTourRepository;
 import com.example.travelAgency.repository.TourRepository;
 import com.example.travelAgency.service.OrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
         List<OrderTour> orderTours = new ArrayList<>();
         for (Long tourId : requestOrderDTO.getTours()) {
             Tour tour = tourRepository.findById(tourId)
-                    .orElseThrow(() -> new RuntimeException(MessageConstraint.TOUR_NOT_FOUND));
+                    .orElseThrow(() -> new RuntimeException(MessageConstants.TOUR_NOT_FOUND));
 
             OrderTour orderTour = new OrderTour();
             orderTour.setOrder(savedOrder);
@@ -54,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     public ResponseOrderDTO getOrderById(Long id) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.ORDER_NOT_FOUND));
+        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstants.ORDER_NOT_FOUND));
 
         return orderMapper.toDto(order);
     }
@@ -65,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public ResponseOrderDTO updateOrder(Long id, RequestOrderDTO requestOrderDTO) {
-        Order existingOrder = orderRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.ORDER_NOT_FOUND));
+        Order existingOrder = orderRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstants.ORDER_NOT_FOUND));
         existingOrder.setOrderDate(requestOrderDTO.getOrderDate());
         List<OrderTour> tours = existingOrder.getTours();
 
@@ -77,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public void deleteOrder(Long id) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.ORDER_NOT_FOUND));
+        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstants.ORDER_NOT_FOUND));
         orderRepository.delete(order);
     }
 }

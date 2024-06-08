@@ -1,6 +1,6 @@
 package com.example.travelAgency.service.impl;
 
-import com.example.travelAgency.constraint.MessageConstraint;
+import com.example.travelAgency.constants.MessageConstants;
 import com.example.travelAgency.dto.categoryDTOs.CategoryDTO;
 import com.example.travelAgency.dto.categoryDTOs.ResponseCategoryDTO;
 import com.example.travelAgency.entity.Category;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -38,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseCategoryDTO getCategoryById(Long id) {
         Category foundCategory = categoryRepository.findById(id).orElseThrow(
-                ()->new RuntimeException(MessageConstraint.CATEGORY_NOT_FOUND)
+                ()->new RuntimeException(MessageConstants.CATEGORY_NOT_FOUND)
         );
         return categoryMapper.mapToCategoryDTO(foundCategory);
     }
@@ -53,7 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseCategoryDTO updateCategory(CategoryDTO categoryDTO, Long id) {
         Category foundCategory = categoryRepository.findById(id).orElseThrow(
-                ()->new RuntimeException(MessageConstraint.CATEGORY_NOT_FOUND)
+                ()->new RuntimeException(MessageConstants.CATEGORY_NOT_FOUND)
         );
         foundCategory.setCategoryName(categoryDTO.getCategoryName());
         Category updatedCategory = categoryRepository.save(foundCategory);
@@ -63,7 +62,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteCategory(Long id) {
         Category foundCategory = categoryRepository.findById(id).orElseThrow(
-                ()->new RuntimeException(MessageConstraint.CATEGORY_NOT_FOUND)
+                ()->new RuntimeException(MessageConstants.CATEGORY_NOT_FOUND)
         );
         categoryRepository.delete(foundCategory);
     }

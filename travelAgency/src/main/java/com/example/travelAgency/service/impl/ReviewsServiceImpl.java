@@ -1,9 +1,8 @@
 package com.example.travelAgency.service.impl;
 
-import com.example.travelAgency.constraint.MessageConstraint;
+import com.example.travelAgency.constants.MessageConstants;
 import com.example.travelAgency.dto.reviewDTOs.RequestReviewDTO;
 import com.example.travelAgency.dto.reviewDTOs.ResponseReviewDTO;
-import com.example.travelAgency.dto.tourDTOs.RequestTourDTO;
 import com.example.travelAgency.entity.Reviews;
 import com.example.travelAgency.entity.Tour;
 import com.example.travelAgency.mappers.ReviewsMapper;
@@ -35,9 +34,9 @@ public class ReviewsServiceImpl implements ReviewsService {
     @Override
     public ResponseReviewDTO getReviewById(Long reviewId, Long tourId) {
         Tour foundTour = tourRepository.findById(tourId).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.TOUR_NOT_FOUND));
+                () -> new RuntimeException(MessageConstants.TOUR_NOT_FOUND));
         Reviews foundReview = reviewsRepository.findById(reviewId).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.REVIEWS_NOT_FOUND));
+                () -> new RuntimeException(MessageConstants.REVIEWS_NOT_FOUND));
 
         if (!(Objects.equals(foundTour.getTourId(), foundReview.getTour().getTourId()))){
             throw  new RuntimeException("Tour with id:"+tourId+" does not correspond to review with id:"+reviewId);
@@ -58,7 +57,7 @@ public class ReviewsServiceImpl implements ReviewsService {
     @Override
     public ResponseReviewDTO addReview(RequestReviewDTO requestReviewDTO, Long tourId) {
         Tour foundTour = tourRepository.findById(tourId).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.TOUR_NOT_FOUND));
+                () -> new RuntimeException(MessageConstants.TOUR_NOT_FOUND));
 
         Reviews review = reviewsMapper.mapToReviewsEntity(requestReviewDTO);
         review.setTour(foundTour);
@@ -69,9 +68,9 @@ public class ReviewsServiceImpl implements ReviewsService {
     @Override
     public ResponseReviewDTO updateReview(RequestReviewDTO requestReviewDTO, Long reviewId, Long tourId) {
         Tour foundTour = tourRepository.findById(tourId).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.TOUR_NOT_FOUND));
+                () -> new RuntimeException(MessageConstants.TOUR_NOT_FOUND));
         Reviews foundReview = reviewsRepository.findById(reviewId).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.REVIEWS_NOT_FOUND));
+                () -> new RuntimeException(MessageConstants.REVIEWS_NOT_FOUND));
         if (!(Objects.equals(foundTour.getTourId(), foundReview.getTour().getTourId()))){
             throw  new RuntimeException("Tour with id:"+tourId+" does not correspond to review with id:"+reviewId);
         }
@@ -87,9 +86,9 @@ public class ReviewsServiceImpl implements ReviewsService {
     @Override
     public void deleteReview(Long reviewId, Long tourId) {
         Tour foundTour = tourRepository.findById(tourId).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.TOUR_NOT_FOUND));
+                () -> new RuntimeException(MessageConstants.TOUR_NOT_FOUND));
         Reviews foundReview = reviewsRepository.findById(reviewId).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.REVIEWS_NOT_FOUND));
+                () -> new RuntimeException(MessageConstants.REVIEWS_NOT_FOUND));
         if (!(Objects.equals(foundTour.getTourId(), foundReview.getTour().getTourId()))){
             throw  new RuntimeException("Tour with id:"+tourId+" does not correspond to review with id:"+reviewId);
         }

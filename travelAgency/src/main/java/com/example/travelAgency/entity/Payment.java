@@ -1,4 +1,4 @@
-package com.example.booking.dataproviders.entities;
+package com.example.travelAgency.entity;
 
 import com.example.travelAgency.entity.Order;
 import jakarta.persistence.*;

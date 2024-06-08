@@ -1,6 +1,6 @@
 package com.example.travelAgency.service.impl;
 
-import com.example.travelAgency.constraint.MessageConstraint;
+import com.example.travelAgency.constants.MessageConstants;
 import com.example.travelAgency.dto.userDTOs.RequestUserDTO;
 import com.example.travelAgency.dto.userDTOs.ResponseUserDTO;
 import com.example.travelAgency.entity.User;
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public ResponseUserDTO findUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.TOUR_NOT_FOUND));
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstants.TOUR_NOT_FOUND));
         return userMapper.mapToResponseUserDto(user);
     }
 
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public ResponseUserDTO updateUser(Long id, RequestUserDTO requestUserDTO) {
-        User userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstraint.USER_NOT_FOUND));
+        User userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException(MessageConstants.USER_NOT_FOUND));
         userEntity.setUserId(id);
         userEntity.setUsername(requestUserDTO.getUsername());
 //        userEntity.setPassword(passwordEncoder.encode(createUserDto.getPassword()));

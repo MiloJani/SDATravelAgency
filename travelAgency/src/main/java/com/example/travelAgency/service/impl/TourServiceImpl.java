@@ -1,10 +1,9 @@
 package com.example.travelAgency.service.impl;
 
-import com.example.travelAgency.constraint.MessageConstraint;
+import com.example.travelAgency.constants.MessageConstants;
 import com.example.travelAgency.dto.tourDTOs.RequestTourDTO;
 import com.example.travelAgency.dto.tourDTOs.ResponseTourDTO;
 import com.example.travelAgency.entity.Category;
-import com.example.travelAgency.entity.Client;
 import com.example.travelAgency.entity.Tour;
 import com.example.travelAgency.mappers.TourMapper;
 import com.example.travelAgency.repository.CategoryRepository;
@@ -50,7 +49,7 @@ public class TourServiceImpl implements TourService {
     @Override
     public ResponseTourDTO getTourById(Long id) {
         Tour foundTour = tourRepository.findById(id).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.TOUR_NOT_FOUND)
+                () -> new RuntimeException(MessageConstants.TOUR_NOT_FOUND)
         );
         return tourMapper.mapToTourDTO(foundTour);
     }
@@ -58,7 +57,7 @@ public class TourServiceImpl implements TourService {
     @Override
     public ResponseTourDTO addTour(RequestTourDTO requestTourDTO) {
         Category foundCategory = categoryRepository.findById(requestTourDTO.getCategoryId()).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.CATEGORY_NOT_FOUND));
+                () -> new RuntimeException(MessageConstants.CATEGORY_NOT_FOUND));
         Tour tour = tourMapper.mapToTourEntity(requestTourDTO);
         tour.setCategory(foundCategory);
 
@@ -69,9 +68,9 @@ public class TourServiceImpl implements TourService {
     @Override
     public ResponseTourDTO updateTour(RequestTourDTO requestTourDTO, Long id) {
         Category foundCategory = categoryRepository.findById(requestTourDTO.getCategoryId()).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.CATEGORY_NOT_FOUND));
+                () -> new RuntimeException(MessageConstants.CATEGORY_NOT_FOUND));
         Tour foundTour = tourRepository.findById(id).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.TOUR_NOT_FOUND)
+                () -> new RuntimeException(MessageConstants.TOUR_NOT_FOUND)
         );
         foundTour.setTourId(id);
         foundTour.setTourName(requestTourDTO.getTourName());
@@ -89,7 +88,7 @@ public class TourServiceImpl implements TourService {
     @Override
     public void deleteTour(Long id) {
         Tour foundTour = tourRepository.findById(id).orElseThrow(
-                () -> new RuntimeException(MessageConstraint.TOUR_NOT_FOUND)
+                () -> new RuntimeException(MessageConstants.TOUR_NOT_FOUND)
         );
         tourRepository.delete(foundTour);
     }
