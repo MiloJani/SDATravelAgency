@@ -24,10 +24,6 @@ public class Payment {
     @Column(name = "ID")
     private Long paymentId;
 
-//    @Column(name = "PAYMENT_TYPE")
-//    @NotBlank(message = "Payment type is required")
-//    private String paymentType;
-
     @Column(name = "CARD_NUMBER")
     @NotBlank(message = "Card number is required")
     private String cardNumber;
